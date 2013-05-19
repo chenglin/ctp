@@ -1,0 +1,52 @@
+#
+# AIX
+#
+# Make settings for AIX 
+#
+
+#
+MACRO       = -DAIX -D_REENTRANT -D_THREAD_SAFE
+
+#
+MKDIR       = -mkdir
+RM          = -rm -f
+
+CC_DLL      = xlC_r
+CX_DLL      = xlC_r
+LD_DLL      = makeC++SharedLib_r
+
+CC_EXE      = xlC_r
+CX_EXE      = xlC_r
+LD_EXE      = xlC_r
+
+
+#
+CCPARAM_DLL_BIT32 = -c -qnotempinc -qrtti=all -brtl
+LDPARAM_DLL_BIT32 = -p 0 -G -qstaticinline -bhalt:5
+CCPARAM_DLL_BIT64 = -q64 -c -qmkshrobj -qrtti=all -brtl
+LDPARAM_DLL_BIT64 = -X64 -p 0 -G -qstaticinline -bhalt:5
+
+
+CCPARAM_EXE_BIT32 = -c -qnotempinc -qrtti=all -brtl
+LDPARAM_EXE_BIT32 = -qnotempinc -qrtti=all -brtl -qstaticinline -bhalt:5
+CCPARAM_EXE_BIT64 = -q64 -c -qnotempinc -qrtti=all -brtl
+LDPARAM_EXE_BIT64 = -q64 -qnotempinc -qrtti=all -brtl -qstaticinline -bhalt:5
+
+#
+CC_DEBUG     = -g -D_DEBUG
+CX_DEBUG     = -g -D_DEBUG
+LD_DEBUG     = -g
+
+CC_RELEASE   = -O2 -DNDEBUG
+CX_RELEASE   = -O2 -DNDEBUG
+LD_RELEASE   = -O2
+
+# 
+DLL_PREFIX  = lib
+DLL_SUFFIX  = so
+
+#
+SOCKET      =
+SYSDEPLIB   = -lpthread -liconv -ldl
+
+

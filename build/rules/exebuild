@@ -1,0 +1,69 @@
+#
+# 
+#
+
+.SUFFIXES:
+.SUFFIXES: .c .cpp .o32 .o64
+
+
+.cpp.o32:
+	if [ $(NO_DEBUG) = "0" ] ; then \
+                $(CX_EXE) $(CCPARAM_EXE_BIT32) $(CCFLAGS) $(CX_DEBUG) $(MACRO) $< -o $@ ; \
+        else \
+                $(CX_EXE) $(CCPARAM_EXE_BIT32) $(CCFLAGS) $(CX_RELEASE) $(MACRO) $< -o $@ ; \
+        fi
+.c.o32:
+	if [ $(NO_DEBUG) = "0" ] ; then \
+                $(CC_EXE) $(CCPARAM_EXE_BIT32) $(CCFLAGS) $(CC_DEBUG) $(MACRO) $< -o $@ ; \
+        else \
+                $(CC_EXE) $(CCPARAM_EXE_BIT32) $(CCFLAGS) $(CC_RELEASE) $(MACRO) $< -o $@ ; \
+        fi
+
+.cpp.o64:
+	if [ $(NO_DEBUG) = "0" ] ; then \
+                $(CX_EXE) $(CCPARAM_EXE_BIT64) $(CCFLAGS) $(CX_DEBUG) $(MACRO) $< -o $@ ; \
+        else \
+                $(CX_EXE) $(CCPARAM_EXE_BIT64) $(CCFLAGS) $(CX_RELEASE) $(MACRO) $< -o $@ ; \
+        fi
+.c.o64:
+	if [ $(NO_DEBUG) = "0" ] ; then \
+                $(CC_EXE) $(CCPARAM_EXE_BIT64) $(CCFLAGS) $(CC_DEBUG) $(MACRO) $< -o $@ ; \
+        else \
+                $(CC_EXE) $(CCPARAM_EXE_BIT64) $(CCFLAGS) $(CC_RELEASE) $(MACRO) $< -o $@ ; \
+        fi
+
+all: bit64
+
+bit32:$(BIN_PATH32)/$(EXENAME)
+
+bit64:$(BIN_PATH64)/$(EXENAME)
+
+$(BIN_PATH32)/$(EXENAME):$(OBJS32)
+	if [ $(NO_DEBUG) = "0" ] ; then \
+                $(LD_EXE) $(LDPARAM_EXE_BIT32) -L$(LIB_PATH32) $(SYSDEPLIB) $(LDFLAGS) $(LD_DEBUG) -o $@ $(OBJS32) ; \
+        else \
+                $(LD_EXE) $(LDPARAM_EXE_BIT32) -L$(LIB_PATH32) $(SYSDEPLIB) $(LDFLAGS) $(LD_RELEASE) -o $@ $(OBJS32) ; \
+        fi
+
+$(BIN_PATH64)/$(EXENAME):$(OBJS64)
+	if [ $(NO_DEBUG) = "0" ] ; then \
+                $(LD_EXE) $(LDPARAM_EXE_BIT64) -L$(LIB_PATH64) $(SYSDEPLIB) $(LDFLAGS) $(LD_DEBUG) -o $@ $(OBJS64) ; \
+        else \
+                $(LD_EXE) $(LDPARAM_EXE_BIT64) -L$(LIB_PATH64) $(SYSDEPLIB) $(LDFLAGS) $(LD_RELEASE) -o $@ $(OBJS64) ; \
+        fi
+
+cleanobj: cleanobj32 cleanobj64
+
+cleanobj32:
+	$(RM) $(OBJS32)
+
+cleanobj64:
+	$(RM) $(OBJS64)
+
+clean:cleanobj32 cleanobj64
+	$(RM) $(BIN_PATH32)/$(EXENAME)
+	$(RM) $(BIN_PATH64)/$(EXENAME)
+
+
+rebuild:clean all
+

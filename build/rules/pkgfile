@@ -1,0 +1,19 @@
+#
+# ´ò°ü³ÌÐò
+#
+.PHONY : pkg pkg-dev
+pkg : 
+	@if [ $(NO_DEBUG) = "0" ] ; then \
+		echo "Please compile release (./configure --no-debug and make rebuild)." ; \
+	else \
+		chmod +x build/script/pkg_install.sh ; \
+		build/script/pkg_install.sh $(BASIC_BASE) $(BASIC_CONFIG) $(BASIC_OS_OSV_CPU) ; \
+	fi
+	
+pkg-dev : 
+	@if [ $(NO_DEBUG) = "0" ] ; then \
+		echo "Please compile release (./configure --no-debug and make rebuild)." ; \
+	else \
+		chmod +x build/script/pkg_dev_install.sh ; \
+		build/script/pkg_dev_install.sh $(BASIC_BASE) $(BASIC_CONFIG) $(BASIC_OS_OSV_CPU) ; \
+	fi

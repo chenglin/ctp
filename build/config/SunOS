@@ -1,0 +1,48 @@
+#
+# SunOS
+#
+
+#
+MACRO       = -DSunOS -D_REENTRANT -D_THREAD_SAFE
+
+#
+MKDIR       = -mkdir
+RM          = -rm -f
+
+CC_DLL      = gcc
+CX_DLL      = g++
+LD_DLL      = g++
+
+CC_EXE      = gcc
+CX_EXE      = g++
+LD_EXE      = g++
+
+#
+CCPARAM_DLL_BIT32 = -m32 -c -fPIC
+LDPARAM_DLL_BIT32 = -m32 -shared
+CCPARAM_DLL_BIT64 = -m64 -c -fPIC
+LDPARAM_DLL_BIT64 = -m64 -shared
+
+
+CCPARAM_EXE_BIT32 = -m32 -c -fPIC
+LDPARAM_EXE_BIT32 = -m32 -liconv
+CCPARAM_EXE_BIT64 = -m64 -c -fPIC
+LDPARAM_EXE_BIT64 = -m64 -liconv
+
+#
+CC_DEBUG     = -g -D_DEBUG
+CX_DEBUG     = -g -D_DEBUG
+LD_DEBUG     = -g
+
+CC_RELEASE   = -O2 -DNDEBUG
+CX_RELEASE   = -O2 -DNDEBUG
+LD_RELEASE   = -O2
+
+# 
+DLL_PREFIX  = lib
+DLL_SUFFIX  = so
+
+#
+SOCKET      = -lsocket
+SYSDEPLIB   = -lpthread -lmd5 -lrt
+
