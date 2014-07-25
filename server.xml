@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBrokerItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BrokerItem>
+    <Label>东证期货</Label>
+    <Server>
+      <ServerItem>
+        <AuthCode />
+        <BrokerID>4040</BrokerID>
+        <Trading>
+          <string>tcp://180.169.85.204:41205</string>
+          <string>tcp://180.166.103.38:41205</string>
+        </Trading>
+        <MarketData>
+          <string>tcp://180.169.85.204:41213</string>
+          <string>tcp://180.166.103.38:41213</string>
+        </MarketData>
+        <Label>东证期货</Label>
+      </ServerItem>
+    </Server>
+  </BrokerItem>
+</ArrayOfBrokerItem>
