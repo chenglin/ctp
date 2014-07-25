@@ -5,7 +5,7 @@
     <Server>
       <ServerItem>
         <AuthCode />
-        <BrokerID>4040</BrokerID>
+        <BrokerID>3040</BrokerID>
         <Trading>
           <string>tcp://180.169.85.204:41205</string>
           <string>tcp://180.166.103.38:41205</string>
